@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 const ai = new GoogleGenAI({
-    apiKey: "AIzaSyAxeQJGaHcUBziFV5wKubKHxo4SK1DKl0w",
+    apiKey: "",
 });
 
 export async function checkPlagiarism(text: string): Promise<boolean> {
