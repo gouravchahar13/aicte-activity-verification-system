@@ -7,6 +7,7 @@ import {
   Download,
   Loader2,
   AlertCircle,
+  XCircle,
 } from "lucide-react";
 import { supabase, Project, Profile } from "../lib/supabase";
 import { useAuth } from "../contexts/AuthContext";
@@ -68,6 +69,27 @@ export function TeacherPortal() {
       setTimeout(() => setSuccess(""), 3000);
     } catch (err: any) {
       setError(err.message || "Failed to approve project");
+    }
+  };
+
+  // ✅ NEW: Handle Rejection
+  const handleReject = async (projectId: string) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to reject and delete this project?"
+    );
+    if (!confirmDelete) return;
+
+    setError("");
+    setSuccess("");
+    try {
+      const { error } = await supabase.from("projects").delete().eq("id", projectId);
+      if (error) throw error;
+
+      setSuccess("Project rejected and deleted successfully!");
+      fetchProjects();
+      setTimeout(() => setSuccess(""), 3000);
+    } catch (err: any) {
+      setError(err.message || "Failed to reject project");
     }
   };
 
@@ -256,14 +278,26 @@ export function TeacherPortal() {
                     <Download className="w-4 h-4" />
                     Download
                   </button>
+
                   {project.status === "pending" && (
-                    <button
-                      onClick={() => handleApprove(project.id)}
-                      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center gap-2"
-                    >
-                      <CheckCircle className="w-4 h-4" />
-                      Approve
-                    </button>
+                    <>
+                      <button
+                        onClick={() => handleApprove(project.id)}
+                        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center gap-2"
+                      >
+                        <CheckCircle className="w-4 h-4" />
+                        Approve
+                      </button>
+
+                      {/* ✅ Reject Button */}
+                      <button
+                        onClick={() => handleReject(project.id)}
+                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center gap-2"
+                      >
+                        <XCircle className="w-4 h-4" />
+                        Reject
+                      </button>
+                    </>
                   )}
                 </div>
               </motion.div>

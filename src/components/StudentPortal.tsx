@@ -10,7 +10,7 @@ import {
   AlertCircle,
   Loader2,
 } from "lucide-react";
-import { extractTextFromFile } from "./extractText";
+import { extractTextFromFile } from "./ExtractText";
 import { checkPlagiarism } from "./GeminiCheck";
 
 export function StudentPortal() {

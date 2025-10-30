@@ -10,25 +10,26 @@ export function LandingPage({ onSelectRole }: LandingPageProps) {
 
   return (
     <div
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden p-6 bg-cover bg-center bg-no-repeat"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat p-6"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1618005198919-d3d4b9de0b05?auto=format&fit=crop&w=1920&q=80')",
+          'url("./image.webp")',
+
       }}
     >
-      {/* Overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-blue-50/70 to-indigo-100/70 backdrop-blur-[2px]"></div>
+      {/* Soft gradient overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-blue-50/50 to-indigo-100/50 backdrop-blur-[2px]" />
 
-      {/* Floating gradient orbs */}
-      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-300 rounded-full blur-[120px] opacity-40 animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-300 rounded-full blur-[160px] opacity-30 animate-pulse delay-1000" />
+      {/* Depth Orbs (glow layers) */}
+      <div className="absolute top-[5%] left-[10%] w-80 h-80 bg-blue-300 rounded-full blur-[120px] opacity-30 animate-pulse" />
+      <div className="absolute bottom-[10%] right-[10%] w-[450px] h-[450px] bg-purple-400 rounded-full blur-[160px] opacity-25 animate-pulse delay-1000" />
 
       {/* Title Section */}
       <div className="text-center mb-16 relative z-10">
-        <h1 className="text-6xl font-extrabold text-slate-800 drop-shadow-lg tracking-tight [text-shadow:2px_2px_8px_rgba(0,0,0,0.15)]">
+        <h1 className="text-6xl font-extrabold text-slate-800 drop-shadow-[0_3px_6px_rgba(0,0,0,0.25)]">
           AICTE Activity Portal
         </h1>
-        <p className="text-lg text-slate-600 mt-4 font-medium">
+        <p className="text-lg text-slate-700 mt-4 font-medium max-w-2xl mx-auto">
           Streamline your project submission and approval process with ease.
         </p>
       </div>
@@ -102,7 +103,7 @@ export function LandingPage({ onSelectRole }: LandingPageProps) {
       )}
 
       {/* Footer */}
-      <footer className="absolute bottom-5 text-sm text-slate-500 z-10">
+      <footer className="absolute bottom-5 text-sm text-slate-600 z-10">
         © 2025 AICTE Verification Portal | Designed with ❤️
       </footer>
     </div>
