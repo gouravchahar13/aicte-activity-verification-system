@@ -1,7 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
-
+import dotenv from "dotenv";
+dotenv.config({ path: "../.env" });
+const api = process.env.apiKey;
 const ai = new GoogleGenAI({
-    apiKey: "",
+    apiKey: api,
 });
 
 export async function checkPlagiarism(text: string): Promise<boolean> {
